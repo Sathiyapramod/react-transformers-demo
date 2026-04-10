@@ -3,6 +3,7 @@ import "./App.css";
 import Description from "./components/hero/Description";
 import Colors from "./components/Colors";
 import Form from "./components/Form";
+import Demo from "./components/Demo";
 
 export default function App() {
   return (
@@ -28,6 +29,7 @@ export default function App() {
       {/* colors  */}
       {/* <Colors /> */}
       <Form />
+      <Demo />
     </div>
   );
 }
