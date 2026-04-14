@@ -11,25 +11,21 @@ function Form() {
     option: "",
   });
 
+  const [studentList, setStudentList] = useState([]);
+
   const [text, setText] = useState(true);
 
-  const toggleButton = () => setText((previousState) => !previousState);
+  const addStudent = (event) => {
+    event.preventDefault();
+    console.log(formData);
+    setStudentList((prev) => {
+      return [...prev, formData];
+    });
+  };
 
   return (
     <div>
-      {/*           
-          name
-          email id 
-          phone
-          city 
-          food options -> breakfast, lunch, dinner 
-          */}
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-          console.log(formData);
-        }}
-      >
+      <form onSubmit={addStudent}>
         {/* name */}
         <div>
           <label htmlFor="name">Student name</label>
@@ -134,8 +130,35 @@ function Form() {
         </div>
         <button type="submit">Submit</button>
       </form>
-      {/* conditional rendering */}
-      <button onClick={toggleButton}>{text === true ? "OK" : "NOT OK"}</button>
+      <table>
+        <thead>
+          <tr>
+            <th>Sl.no.</th>
+            <th>Student Name</th>
+            <th>Email Id</th>
+            <th>phone</th>
+            <th>City</th>
+            <th>Food Option</th>
+          </tr>
+        </thead>
+        <tbody>
+          {studentList.map((x, index) => {
+            const { name, email, phone, city, option } = x;
+            return (
+              <tr>
+                <td>{index +1}</td>
+                <td>{name}</td>
+                <td>{email}</td>
+                <td>{phone}</td>
+                <td>{city}</td>
+                <td>{option}</td>
+                <td><button>edit</button></td>
+                <td><button>delete</button></td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     </div>
   );
 }

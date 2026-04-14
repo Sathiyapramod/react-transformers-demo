@@ -201,6 +201,7 @@ h1 {
   height: 100px;
   border: 1px solid black;
 }
+
 .card-container {
   display: flex;
   justify-content: center;
@@ -216,4 +217,9 @@ h1 {
   background-color: #d3d3d3;
   padding: 10px;
 
+}
+table {
+  height: auto;
+  width: 100%;
+  border: 1px solid black;
 }
