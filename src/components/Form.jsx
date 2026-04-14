@@ -1,8 +1,6 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 
 function Form() {
-  // dictionary
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -13,150 +11,140 @@ function Form() {
 
   const [studentList, setStudentList] = useState([]);
 
-  const [text, setText] = useState(true);
-
   const addStudent = (event) => {
     event.preventDefault();
-    console.log(formData);
-    setStudentList((prev) => {
-      return [...prev, formData];
-    });
+    setStudentList((prev) => [...prev, formData]);
   };
 
   return (
-    <div>
-      <form onSubmit={addStudent}>
+    <div className="container">
+      <h1 className="title">Student Registration</h1>
+
+      <form className="form" onSubmit={addStudent}>
         {/* name */}
-        <div>
-          <label htmlFor="name">Student name</label>
+        <div className="form-group">
+          <label>Student Name</label>
           <input
             type="text"
-            id="name"
             placeholder="Enter your name"
-            name="name"
-            onChange={(event) =>
-              setFormData((prev) => {
-                return { ...prev, name: event.target.value };
-              })
-            }
+            className="input"
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           />
         </div>
-        {/* email id */}
-        <div>
-          <label htmlFor="email">Email ID</label>
+
+        {/* email */}
+        <div className="form-group">
+          <label>Email ID</label>
           <input
             type="email"
-            id="email"
-            placeholder="Enter your email Id"
-            name="email"
-            onChange={(event) =>
-              setFormData((prev) => {
-                return { ...prev, email: event.target.value };
-              })
+            placeholder="Enter your email"
+            className="input"
+            onChange={(e) =>
+              setFormData({ ...formData, email: e.target.value })
             }
           />
         </div>
+
         {/* phone */}
-        <div>
-          <label htmlFor="phone">Phone Number</label>
+        <div className="form-group">
+          <label>Phone Number</label>
           <input
             type="text"
-            id="phone"
-            placeholder="Enter your phone number"
-            name="phone"
-            onChange={(event) =>
-              setFormData((prev) => {
-                return { ...prev, phone: event.target.value };
-              })
+            placeholder="Enter phone number"
+            className="input"
+            onChange={(e) =>
+              setFormData({ ...formData, phone: e.target.value })
             }
           />
         </div>
+
         {/* city */}
-        <div>
-          <label htmlFor="city">City / Town</label>
+        <div className="form-group">
+          <label>City / Town</label>
           <input
             type="text"
-            id="city"
-            placeholder="Enter your city"
-            onChange={(event) =>
-              setFormData((prev) => {
-                return { ...prev, city: event.target.value };
-              })
-            }
-            name="city"
+            placeholder="Enter city"
+            className="input"
+            onChange={(e) => setFormData({ ...formData, city: e.target.value })}
           />
         </div>
+
         {/* food */}
-        <div>
-          <h4>Select your Food Option</h4>
-          <div>
-            <input
-              type="radio"
-              name="food"
-              value="breakfast"
-              id="breakfast"
-              onChange={(event) =>
-                setFormData((prev) => {
-                  return { ...prev, option: event.target.value };
-                })
-              }
-            />
-            <label htmlFor="breakfast">Breakfast</label>
-            <input
-              type="radio"
-              name="food"
-              value="lunch"
-              id="lunch"
-              onChange={(event) =>
-                setFormData((prev) => {
-                  return { ...prev, option: event.target.value };
-                })
-              }
-            />
-            <label htmlFor="lunch">Lunch</label>
-            <input
-              type="radio"
-              name="food"
-              value="dinner"
-              id="dinner"
-              onChange={(event) =>
-                setFormData((prev) => {
-                  return { ...prev, option: event.target.value };
-                })
-              }
-            />
-            <label htmlFor="dinner">Dinner</label>
+        <div className="form-group">
+          <h4 className="section-title">Select Food Option</h4>
+          <div className="radio-group">
+            <label>
+              <input
+                type="radio"
+                name="food"
+                value="breakfast"
+                onChange={(e) =>
+                  setFormData({ ...formData, option: e.target.value })
+                }
+              />
+              Breakfast
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="food"
+                value="lunch"
+                onChange={(e) =>
+                  setFormData({ ...formData, option: e.target.value })
+                }
+              />
+              Lunch
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="food"
+                value="dinner"
+                onChange={(e) =>
+                  setFormData({ ...formData, option: e.target.value })
+                }
+              />
+              Dinner
+            </label>
           </div>
         </div>
-        <button type="submit">Submit</button>
+
+        <button className="submit-btn" type="submit">
+          Submit
+        </button>
       </form>
-      <table>
+
+      {/* Table */}
+      <table className="table">
         <thead>
           <tr>
-            <th>Sl.no.</th>
-            <th>Student Name</th>
-            <th>Email Id</th>
-            <th>phone</th>
+            <th>Sl.no</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
             <th>City</th>
-            <th>Food Option</th>
+            <th>Food</th>
+            <th>Actions</th>
           </tr>
         </thead>
+
         <tbody>
-          {studentList.map((x, index) => {
-            const { name, email, phone, city, option } = x;
-            return (
-              <tr>
-                <td>{index +1}</td>
-                <td>{name}</td>
-                <td>{email}</td>
-                <td>{phone}</td>
-                <td>{city}</td>
-                <td>{option}</td>
-                <td><button>edit</button></td>
-                <td><button>delete</button></td>
-              </tr>
-            );
-          })}
+          {studentList.map((x, index) => (
+            <tr key={index}>
+              <td>{index + 1}</td>
+              <td>{x.name}</td>
+              <td>{x.email}</td>
+              <td>{x.phone}</td>
+              <td>{x.city}</td>
+              <td>{x.option}</td>
+              <td className="actions">
+                <button className="edit-btn">Edit</button>
+                <button className="delete-btn">Delete</button>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
