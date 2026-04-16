@@ -3,7 +3,7 @@ import React from "react";
 // step 2
 function Description({ name }) {
   return (
-    <div>
+    <React.Fragment>
       <h2>{name}</h2>
       <p>
         Vestibulum vel porta justo, quis congue urna. In vel fringilla sapien.
@@ -17,7 +17,7 @@ function Description({ name }) {
         magna tincidunt, at fermentum risus porta. Donec scelerisque cursus
         enim, facilisis pharetra nisi suscipit fringilla.
       </p>
-    </div>
+    </React.Fragment>
   );
 }
 

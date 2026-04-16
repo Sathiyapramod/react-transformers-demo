@@ -29,9 +29,20 @@ export default function App() {
 
       {/* colors  */}
       {/* <Colors /> */}
-      <Form />
+      {/* <Form /> */}
       {/* <Demo /> */}
       {/* <Effect /> */}
+
+      <header>
+        <nav>
+          <ul className="menu-bar">
+            <li>Home</li>
+            <li>skills</li>
+            <li>contact</li>
+            <li>About</li>
+          </ul>
+        </nav>
+      </header>
     </div>
   );
 }

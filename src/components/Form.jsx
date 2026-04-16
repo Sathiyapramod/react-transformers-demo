@@ -14,6 +14,26 @@ function Form() {
   const addStudent = (event) => {
     event.preventDefault();
     setStudentList((prev) => [...prev, formData]);
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      city: "",
+      option: "",
+    });
+  };
+
+  const handleDelete = (index) => {
+    const first = studentList.slice(0, index);
+    const second = studentList.slice(index + 1);
+    const result = [...first, ...second];
+    setStudentList(result);
+  };
+
+  const handleEdit = (index) => {
+    console.log(index);
+    let currentStudent = studentList[index];
+    setFormData(currentStudent);
   };
 
   return (
@@ -28,6 +48,7 @@ function Form() {
             type="text"
             placeholder="Enter your name"
             className="input"
+            value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           />
         </div>
@@ -39,6 +60,7 @@ function Form() {
             type="email"
             placeholder="Enter your email"
             className="input"
+            value={formData.email}
             onChange={(e) =>
               setFormData({ ...formData, email: e.target.value })
             }
@@ -52,6 +74,7 @@ function Form() {
             type="text"
             placeholder="Enter phone number"
             className="input"
+            value={formData.phone}
             onChange={(e) =>
               setFormData({ ...formData, phone: e.target.value })
             }
@@ -65,6 +88,7 @@ function Form() {
             type="text"
             placeholder="Enter city"
             className="input"
+            value={formData.city}
             onChange={(e) => setFormData({ ...formData, city: e.target.value })}
           />
         </div>
@@ -140,8 +164,22 @@ function Form() {
               <td>{x.city}</td>
               <td>{x.option}</td>
               <td className="actions">
-                <button className="edit-btn">Edit</button>
-                <button className="delete-btn">Delete</button>
+                <button
+                  className="edit-btn"
+                  onClick={() => {
+                    handleEdit(index);
+                  }}
+                >
+                  Edit
+                </button>
+                <button
+                  className="delete-btn"
+                  onClick={() => {
+                    handleDelete(index);
+                  }}
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}

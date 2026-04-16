@@ -214,6 +214,7 @@
   padding: 10px;
 
 }
+
 /* Container */
 .container {
   max-width: 900px;
@@ -284,50 +285,58 @@
 .table {
   width: 100%;
   border-collapse: collapse;
-  }
-  
-  .table th,
-  .table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-  }
-  
-  .table th {
-    background-color: #e3e3e3;
-    color: black;
-  }
-  
-  /* Actions */
-  .actions {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-  }
-  
-  /* Buttons */
-  .edit-btn {
-    background: orange;
-    border: none;
-    padding: 5px 10px;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .delete-btn {
-    background: red;
-    border: none;
-    padding: 5px 10px;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .edit-btn:hover {
-    background: darkorange;
-  }
-  
-  .delete-btn:hover {
-    background: darkred;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.table th {
+  background-color: #e3e3e3;
+  color: black;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+/* Buttons */
+.edit-btn {
+  background: orange;
+  border: none;
+  padding: 5px 10px;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-btn {
+  background: red;
+  border: none;
+  padding: 5px 10px;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.edit-btn:hover {
+  background: darkorange;
+}
+
+.delete-btn:hover {
+  background: darkred;
+}
+
+.menu-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
 }
