@@ -339,4 +339,37 @@
   justify-content: space-between;
   align-items: center;
   list-style: none;
+  background-color: wheat;
+  padding: 20px;
+}
+
+.menu-bar li {
+  cursor: pointer;
+}
+
+/* 
+                  what is the diff between
+                  .menu-bar li 
+                  
+                  .menu-bar > li 
+                  
+                  */
+
+.footer {
+  background-color: #000;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.dynamic-outlet {
+  background-color: lightblue;
+  min-height: 85dvh;
+  /* to center the content inside the outlet */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+
 }
