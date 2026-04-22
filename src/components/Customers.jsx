@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Customers() {
+  // declare a variable named navigate
+  const navigate = useNavigate();
+
   // this is the way to declare a variable (Hook)
   const [customers, setCustomers] = useState([
     {
@@ -22,6 +26,7 @@ function Customers() {
 
   const handleClick = (id) => {
     console.log("You have Clicked Customer ID", id);
+    navigate(`/customers/${id}`);
   };
 
   return (
