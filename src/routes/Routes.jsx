@@ -5,6 +5,7 @@ import Home from "../components/Home";
 import Skill from "../components/Skill";
 import Contact from "../components/Contact";
 import About from "../components/About";
+import Customers from "../components/Customers";
 // please import error page here
 import ErrorPage from "../components/ErrorPage";
 
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+      },
+      {
+        path: "/customers",
+        element: <Customers />,
       },
       {
         path: "*",

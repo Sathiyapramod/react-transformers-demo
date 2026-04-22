@@ -373,3 +373,11 @@
   font-size: 32px;
 
 }
+table,
+th,
+td {
+  border-collapse: collapse;
+  font-size: 18px;
+  padding: 10px;
+  border: 1px solid black;
+}

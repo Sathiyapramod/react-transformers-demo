@@ -19,6 +19,9 @@ function MainLayout() {
               <Link to="/contact">Contact</Link>
             </li>
             <li>
+              <Link to="/customers">Customers</Link>
+            </li>
+            <li>
               <Link to="/about">About</Link>
             </li>
           </ul>
