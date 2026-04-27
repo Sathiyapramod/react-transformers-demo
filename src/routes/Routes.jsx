@@ -46,6 +46,10 @@ const router = createBrowserRouter([
         element: <CustomerDetail />,
       },
       {
+        path: "/theme",
+        element: <div></div>,
+      },
+      {
         path: "*",
         element: <ErrorPage />,
       },

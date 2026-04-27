@@ -1,28 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+// subscribe action
+import { useContext } from "react";
+import { ConfigContext } from "../context/configContext";
 
 function Customers() {
   // declare a variable named navigate
   const navigate = useNavigate();
 
-  // this is the way to declare a variable (Hook)
-  const [customers, setCustomers] = useState([
-    {
-      id: "1",
-      name: "john",
-      email: "john@io.com",
-    },
-    {
-      id: "2",
-      name: "steve",
-      email: "steve@io.com",
-    },
-    {
-      id: "3",
-      name: "alice",
-      email: "alice@io.com",
-    },
-  ]);
+  const { customers, setCustomers } = useContext(ConfigContext);
 
   const handleClick = (id) => {
     console.log("You have Clicked Customer ID", id);
