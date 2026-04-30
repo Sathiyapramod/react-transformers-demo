@@ -36,6 +36,7 @@ function Form() {
       // you will have API calls
       // CREATE A STUDENT PROFILE IN BACKEND
       const API_URL = "http://localhost:4000/api/students";
+      const data = "hello";
 
       // payload ready
       const payload = {
