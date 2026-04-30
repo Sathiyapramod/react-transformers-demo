@@ -10,10 +10,13 @@ function Form() {
       .string()
       .max(20)
       .min(5)
-      .matches(/^[a-zA-Z]+$/g)
+      .matches(/^[a-zA-Z ]+$/g)
       .required(),
     email: yup.string().email().required(),
-    phone: yup.string().length(10).required(),
+    phone: yup
+      .string()
+      .length(10, "You have to Enter Only 10 Digits")
+      .required(),
     city: yup.string().optional(),
     // option: yup.string().required(),
   });
@@ -28,9 +31,34 @@ function Form() {
       // option: "",
     },
     validationSchema: studentSchema,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       console.log(values);
       // you will have API calls
+      // CREATE A STUDENT PROFILE IN BACKEND
+      const API_URL = "http://localhost:4000/api/students";
+
+      // payload ready
+      const payload = {
+        name: values.name,
+        email: values.email,
+        phone: values.phone,
+        city: values.city,
+      };
+
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.status !== 200) {
+        alert("Student Creation failed");
+      } else {
+        alert("student created Successfully");
+      }
     },
   });
 
@@ -85,7 +113,13 @@ function Form() {
             id="name"
             name="name"
             onChange={formik.handleChange}
+            className="bg-white p-2 rounded-sm"
           />
+        </div>
+
+        {/* Message to show - if any Errors  */}
+        <div className="text-red-500">
+          {formik.errors.name && formik.touched.name ? formik.errors.name : ""}
         </div>
 
         {/* email */}
@@ -99,7 +133,14 @@ function Form() {
             id="email"
             name="email"
             onChange={formik.handleChange}
+            className="bg-white p-2 rounded-sm"
           />
+        </div>
+        {/* Message to show - if any Errors  */}
+        <div className="text-red-500">
+          {formik.errors.email && formik.touched.email
+            ? formik.errors.email
+            : ""}
         </div>
 
         {/* phone */}
@@ -113,9 +154,16 @@ function Form() {
             id="phone"
             name="phone"
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            className="bg-white p-2 rounded-sm"
           />
         </div>
-
+        {/* Message to show - if any Errors  */}
+        <div className="text-red-500">
+          {formik.errors.phone && formik.touched.phone
+            ? formik.errors.phone
+            : ""}
+        </div>
         {/* city */}
         <div className="form-group">
           <label>City / Town</label>
@@ -127,7 +175,13 @@ function Form() {
             id="city"
             name="city"
             onChange={formik.handleChange}
+            className="bg-white p-2 rounded-sm"
           />
+        </div>
+
+        {/* Message to show - if any Errors  */}
+        <div className="text-red-500">
+          {formik.errors.city && formik.touched.city ? formik.errors.city : ""}
         </div>
 
         {/* food */}
