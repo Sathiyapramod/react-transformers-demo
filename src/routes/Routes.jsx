@@ -7,6 +7,7 @@ import Contact from "../components/Contact";
 import About from "../components/About";
 import Customers from "../components/Customers";
 import CustomerDetail from "../components/CustomerDetail";
+import Form from "../components/Form";
 // please import error page here
 import ErrorPage from "../components/ErrorPage";
 
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "*",
         element: <ErrorPage />,
+      },
+      {
+        path: "/form",
+        element: <Form />,
       },
     ],
   },

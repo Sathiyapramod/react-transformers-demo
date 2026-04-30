@@ -27,6 +27,9 @@ function MainLayout() {
             <li>
               <Link to="/theme">Change Theme</Link>
             </li>
+            <li>
+              <Link to="/form">Form</Link>
+            </li>
           </ul>
         </nav>
       </header>

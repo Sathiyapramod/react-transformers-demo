@@ -1,6 +1,39 @@
 import React, { useState } from "react";
+// importing package
+import * as yup from "yup";
+import { useFormik } from "formik";
 
 function Form() {
+  // yup validation schema
+  const studentSchema = yup.object({
+    name: yup
+      .string()
+      .max(20)
+      .min(5)
+      .matches(/^[a-zA-Z]+$/g)
+      .required(),
+    email: yup.string().email().required(),
+    phone: yup.string().length(10).required(),
+    city: yup.string().optional(),
+    // option: yup.string().required(),
+  });
+
+  // formik validation part
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      phone: "",
+      city: "",
+      // option: "",
+    },
+    validationSchema: studentSchema,
+    onSubmit: (values) => {
+      console.log(values);
+      // you will have API calls
+    },
+  });
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -40,7 +73,7 @@ function Form() {
     <div className="container">
       <h1 className="title">Student Registration</h1>
 
-      <form className="form" onSubmit={addStudent}>
+      <form className="form" onSubmit={formik.handleSubmit}>
         {/* name */}
         <div className="form-group">
           <label>Student Name</label>
@@ -48,8 +81,10 @@ function Form() {
             type="text"
             placeholder="Enter your name"
             className="input"
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            value={formik.values.name}
+            id="name"
+            name="name"
+            onChange={formik.handleChange}
           />
         </div>
 
@@ -60,10 +95,10 @@ function Form() {
             type="email"
             placeholder="Enter your email"
             className="input"
-            value={formData.email}
-            onChange={(e) =>
-              setFormData({ ...formData, email: e.target.value })
-            }
+            value={formik.values.email}
+            id="email"
+            name="email"
+            onChange={formik.handleChange}
           />
         </div>
 
@@ -74,10 +109,10 @@ function Form() {
             type="text"
             placeholder="Enter phone number"
             className="input"
-            value={formData.phone}
-            onChange={(e) =>
-              setFormData({ ...formData, phone: e.target.value })
-            }
+            value={formik.values.phone}
+            id="phone"
+            name="phone"
+            onChange={formik.handleChange}
           />
         </div>
 
@@ -88,23 +123,25 @@ function Form() {
             type="text"
             placeholder="Enter city"
             className="input"
-            value={formData.city}
-            onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+            value={formik.values.city}
+            id="city"
+            name="city"
+            onChange={formik.handleChange}
           />
         </div>
 
         {/* food */}
-        <div className="form-group">
+        {/* <div className="form-group">
           <h4 className="section-title">Select Food Option</h4>
           <div className="radio-group">
             <label>
               <input
                 type="radio"
-                name="food"
+                id="option"
+                name="option"
                 value="breakfast"
-                onChange={(e) =>
-                  setFormData({ ...formData, option: e.target.value })
-                }
+
+                onChange={formik.handleChange}
               />
               Breakfast
             </label>
@@ -112,7 +149,8 @@ function Form() {
             <label>
               <input
                 type="radio"
-                name="food"
+                id="option"
+                name="option"
                 value="lunch"
                 onChange={(e) =>
                   setFormData({ ...formData, option: e.target.value })
@@ -133,7 +171,7 @@ function Form() {
               Dinner
             </label>
           </div>
-        </div>
+        </div> */}
 
         <button className="submit-btn" type="submit">
           Submit
