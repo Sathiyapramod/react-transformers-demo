@@ -23,7 +23,10 @@ function ConfigProvider({ children }) {
       email: "alice@io.com",
     },
   ]);
-     
+  const [tickets, setTickets] = useState([]);
+
+  
+
   // Expose
   return (
     <ConfigContext.Provider value={{ customers, setCustomers }}>

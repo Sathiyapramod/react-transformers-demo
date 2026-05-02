@@ -17,7 +17,7 @@ export default function App() {
   const getCustomers = async () => {
     try {
       // api logic
-      const API_URL = "http://localhost:4000/api/customers";
+      const API_URL = "http://reactexample.vercel.app/customers";
 
       const response = await fetch(API_URL, {
         method: "GET",
